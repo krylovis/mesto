@@ -1,5 +1,19 @@
 # Проект: Место
 
+**Технологии**
+
+* HTML
+* CSS
+* Flexbox (Flexible Box Layout Module
+* Grid Layout
+* JavaScript
+
+**Ссылка на проект**
+
+https://krylovis.github.io/mesto/
+или
+https://krylovis.github.io/mesto/index.html 
+
 ### Обзор
 
 * Figma
