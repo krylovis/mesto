@@ -30,4 +30,5 @@
 @import url(../blocks/element/__button/element__button.css);
 
 /* --------------- footer --------------- */
-@import url(../blocks);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__text/footer__text.css);
