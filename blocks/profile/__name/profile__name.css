@@ -10,5 +10,6 @@
   .profile__name {
     font-size: 27px;
     padding-right: 10px;
+    line-height: 33px;
   }
 }
