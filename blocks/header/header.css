@@ -11,3 +11,9 @@
   height: 1px;
   background: #545454;
 }
+
+@media screen and (max-width: 919px) {
+  .header {
+    padding: 28px 0 0;
+  }
+}
