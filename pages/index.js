@@ -8,21 +8,21 @@ let nameInput = document.querySelector('#inputName');
 let jobInput = document.querySelector('#inputJob');
 
 
-profileEditButton.addEventListener('click', function() {
+profileEditButton.addEventListener('click', function () {
   console.log('nameInput');
   popup.classList.toggle('popup_opened');
 });
 
-popupCloseButton.addEventListener('click', function() {
+popupCloseButton.addEventListener('click', function () {
   console.log('nameInput');
   popup.classList.toggle('popup_opened');
 });
 
-function handleFormSubmit (evt) {
-    evt.preventDefault();
-    profileName.textContent = nameInput.value;
-    profileSubtitle.textContent = jobInput.value;
-    popup.classList.toggle('popup_opened');
+function handleFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileSubtitle.textContent = jobInput.value;
+  popup.classList.toggle('popup_opened');
 }
 
-formElement.addEventListener('submit', handleFormSubmit); 
+formElement.addEventListener('submit', handleFormSubmit);
