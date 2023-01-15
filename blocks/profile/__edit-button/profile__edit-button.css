@@ -1,5 +1,6 @@
 .profile__edit-button {
-  flex: 0 1 24px;
+  flex: 0 1;
+  min-width: 24px;
   background: none;
   height: 24px;
   border: 1px solid white;
@@ -14,7 +15,7 @@
 @media screen and (max-width: 700px) {
   .profile__edit-button {
     background-size: 7.5px 7.5px;
-    flex: 0 1 18px;
+    min-width: 18px;
     height: 18px;
   }
 }
