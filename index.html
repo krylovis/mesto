@@ -21,15 +21,11 @@
         <div class="profile__info">
           <div class="profile__title">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="button profile__edit-button">
-              <img src="./images/pen.svg" alt="Кнопка редактировать" class="profile__edit-icon">
-            </button>
+            <button class="button profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
           </div>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button class="button profile__add-button">
-          <img src="./images/plus.svg" alt="Кнопка добавить" class="button profile__add-icon">
-        </button>
+        <button class="button profile__add-button" type="button" aria-label="Добавить место"></button>
       </section>
 
       <section class="elements">
@@ -37,7 +33,7 @@
           <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Фото" class="element__image">
           <div class="element__container">
             <p class="element__title">Карачаевск</p>
-            <img src="./images/Vector.svg" alt="" class="button element__button">
+            <button class="button element__button" type="button" aria-label="Поставить лайк"></button>
           </div>
         </div>
 
@@ -45,7 +41,7 @@
           <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Фото" class="element__image">
           <div class="element__container">
             <p class="element__title">Гора Эльбрус</p>
-            <img src="./images/Vector.svg" alt="" class="button element__button">
+            <button class="button element__button" type="button" aria-label="Поставить лайк"></button>
           </div>
         </div>
 
@@ -53,7 +49,7 @@
           <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Фото" class="element__image">
           <div class="element__container">
             <p class="element__title">Домбай</p>
-            <img src="./images/Vector.svg" alt="" class="button element__button">
+            <button class="button element__button" type="button" aria-label="Поставить лайк"></button>
           </div>
         </div>
 
@@ -61,7 +57,7 @@
           <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Фото" class="element__image">
           <div class="element__container">
             <p class="element__title">Гора Эльбрус</p>
-            <img src="./images/Vector.svg" alt="" class="button element__button">
+            <button class="button element__button" type="button" aria-label="Поставить лайк"></button>
           </div>
         </div>
 
@@ -69,7 +65,7 @@
           <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Фото" class="element__image">
           <div class="element__container">
             <p class="element__title">Домбай</p>
-            <img src="./images/Vector.svg" alt="" class="button element__button">
+            <button class="button element__button" type="button" aria-label="Поставить лайк"></button>
           </div>
         </div>
 
@@ -77,23 +73,25 @@
           <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Фото" class="element__image">
           <div class="element__container">
             <p class="element__title">Карачаево-Черкесия</p>
-            <img src="./images/Vector.svg" alt="" class="button element__button">
+            <button class="button element__button" type="button" aria-label="Поставить лайк"></button>
           </div>
         </div>
       </section>
 
-      <section class="popup">
-        <form action="action" name="popupContainer" class="popup__container">
+      <section class="popup popup_type_profile-form">
+        <div class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <img src="./images/close-icon.svg" alt="Кнопка закрыть форму" class="button popup__close-button">
-          <label class="popup__label" for="inputName">
-            <input class="popup__input" id="inputName" type="text" name="name" placeholder="ФИО">
-          </label>
-          <label class="popup__label" for="inputJob">
-            <input class="popup__input" id="inputJob" type="text" name="job" placeholder="Профессия">
-          </label>
-          <button class="button popup__submit-button" type="submit">Сохранить</button>
-        </form>
+          <form action="action" name="profileForm" class="popup__form">
+            <label class="popup__label" for="inputName">
+              <input class="popup__input" id="inputName" type="text" name="name" placeholder="ФИО">
+            </label>
+            <label class="popup__label" for="inputJob">
+              <input class="popup__input" id="inputJob" type="text" name="job" placeholder="Профессия">
+            </label>
+            <button class="button popup__submit-button" type="submit" aria-label="Сохранить данные">Сохранить</button>
+          </form>
+          <button class="button popup__close-button" type="button" aria-label="Закрыть форму"></button>
+        </div>
       </section>
 
       <footer class="footer">
@@ -102,7 +100,7 @@
 
     </main>
   </div>
-  <script src="./pages/index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>
