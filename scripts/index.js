@@ -57,12 +57,11 @@ profileAddButton.addEventListener('click', () => {
 
 function addCard(evt) {
   evt.preventDefault();
-  let card = {
-    name: '',
-    link: '',
-  };
+  let card = {};
   card.name = inputPlaceName.value;
   card.link = inputPlaceLink.value;
+  inputPlaceName.value = '';
+  inputPlaceLink.value = '';
   initialCards.unshift(card);
   renderCards();
   closePopup();
