@@ -34,8 +34,9 @@
 
       <section class="popup popup_type_profile-form">
         <div class="popup__container">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <form action="action" name="profileForm" class="popup__form">
+          <h2 class="popup__title"></h2>
+
+          <form action="profileFormAction" name="profileForm" class="popup__form">
             <label class="popup__label" for="inputName">
               <input class="popup__input" id="inputName" type="text" name="name" placeholder="ФИО">
             </label>
@@ -44,6 +45,17 @@
             </label>
             <button class="button popup__submit-button" type="submit" aria-label="Сохранить данные">Сохранить</button>
           </form>
+
+          <form action="newPlaceFormAction" name="newPlaceForm" class="popup__form">
+            <label class="popup__label" for="inputPlaceName">
+              <input class="popup__input" id="inputPlaceName" type="text" name="title" placeholder="Название">
+            </label>
+            <label class="popup__label" for="inputPlaceLink">
+              <input class="popup__input" id="inputPlaceLink" type="text" name="link" placeholder="Ссылка на картинку">
+            </label>
+            <button class="button popup__submit-button" type="submit" aria-label="Создать место">Создать</button>
+          </form>
+
           <button class="button popup__close-button" type="button" aria-label="Закрыть форму"></button>
         </div>
       </section>
@@ -65,8 +77,9 @@
     </div>
   </template>
 
-  <script src="./scripts/index.js"></script>
-  <script src="./scripts/elements.js"></script>
+  <script src="./scripts/initialCards.js" type="module"></script>
+  <script src="./scripts/index.js" type="module"></script>
+  <script src="./scripts/elements.js" type="module"></script>
 </body>
 
 </html>
