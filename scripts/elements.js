@@ -10,6 +10,10 @@ export function renderCards() {
   
     element.querySelector('.element__title').textContent = item.name;
     element.querySelector('.element__image').src = item.link;
+
+    element.querySelector('.element__like').addEventListener('click', (event) => {
+      event.target.classList.toggle('element__like_active');
+    });
   
     elements.append(element);
   });
