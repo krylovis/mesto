@@ -14,6 +14,10 @@ export function renderCards() {
     element.querySelector('.element__like').addEventListener('click', (event) => {
       event.target.classList.toggle('element__like_active');
     });
+    
+    element.querySelector('.element__trash').addEventListener('click', (event) => {
+      event.target.parentElement.remove();
+    });
   
     elements.append(element);
   });
