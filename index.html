@@ -34,7 +34,7 @@
 
       <section class="popup popup_type_profile-form">
         <div class="popup__container">
-          <h2 class="popup__title"></h2>
+          <h2 class="popup__title">Редактировать профиль</h2>
 
           <form action="profileFormAction" name="profileForm" class="popup__form">
             <label class="popup__label" for="inputName">
@@ -46,6 +46,14 @@
             <button class="button popup__submit-button" type="submit" aria-label="Сохранить данные">Сохранить</button>
           </form>
 
+          <button class="button popup__close-button" type="button" aria-label="Закрыть форму"></button>
+        </div>
+      </section>
+
+      <section class="popup popup_type_new-place">
+        <div class="popup__container">
+          <h2 class="popup__title">Новое место</h2>
+
           <form action="newPlaceFormAction" name="newPlaceForm" class="popup__form">
             <label class="popup__label" for="inputPlaceName">
               <input class="popup__input" id="inputPlaceName" type="text" name="title" placeholder="Название">
@@ -55,6 +63,18 @@
             </label>
             <button class="button popup__submit-button" type="submit" aria-label="Создать место">Создать</button>
           </form>
+
+          <button class="button popup__close-button" type="button" aria-label="Закрыть форму"></button>
+        </div>
+      </section>
+
+      <section class="popup popup_type_place-photo">
+        <div class="popup__container">
+
+          <figure class="popup__figure">
+            <img src="" alt="Фото" class="popup__photo">
+            <figcaption class="popup__figcaption"></figcaption>
+          </figure>
 
           <button class="button popup__close-button" type="button" aria-label="Закрыть форму"></button>
         </div>
