@@ -28,6 +28,7 @@ popupCloseButton.forEach(item => {
 function closePopup() {
   popupNewPlace.classList.remove('popup_opened');
   popupProfileForm.classList.remove('popup_opened');
+  popupPlacePhoto.classList.remove('popup_opened');
 };
 
 // Редактировать профиль
@@ -69,6 +70,15 @@ function addCard(event) {
 
 newPlaceForm.addEventListener('submit', addCard);
 
-// Фото
+// Открыть фото
 
-// popupPlacePhoto
+const popupPhoto = document.querySelector('.popup__photo');
+const popupFigcaption = document.querySelector('.popup__figcaption');
+
+export function openPlacePhoto(event) {
+  event.preventDefault();
+  popupPhoto.src = event.target.src;
+  const placeTitle = event.target.parentElement.querySelector('.element__title');
+  popupFigcaption.textContent = placeTitle.textContent;
+  popupPlacePhoto.classList.toggle('popup_opened');
+}

@@ -1,4 +1,5 @@
 import { initialCards } from './initialCards.js';
+import { openPlacePhoto } from './index.js';
 
 const elements = document.querySelector('.elements');
 const elementTemplate = document.querySelector('#element-template').content;
@@ -13,7 +14,7 @@ export function renderCards() {
 
     element.querySelector('.element__image').addEventListener('click', (event) => {
       event.preventDefault();
-      console.log('event.target', event.target);
+      openPlacePhoto(event);
     });
 
     element.querySelector('.element__like').addEventListener('click', (event) => {
