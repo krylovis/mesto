@@ -43,14 +43,14 @@ profileEditButton.addEventListener('click', () => {
   inputJob.value = profileSubtitle.textContent;
 });
 
-function handleFormSubmit(event) {
+function handleProfileFormSubmit(event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileSubtitle.textContent = inputJob.value;
   closePopup(popupProfileForm);
 }
 
-profileForm.addEventListener('submit', handleFormSubmit);
+profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 // Открыть фото
 
@@ -60,6 +60,7 @@ const popupFigcaption = document.querySelector('.popup__figcaption');
 function openPlacePhoto(event) {
   event.preventDefault();
   popupPhoto.src = event.target.src;
+  popupPhoto.alt = event.target.alt;
   const placeTitle = event.target.parentElement.querySelector('.element__title');
   popupFigcaption.textContent = placeTitle.textContent;
   openPopup(popupPlacePhoto);
@@ -102,7 +103,7 @@ profileAddButton.addEventListener('click', () => {
 
 function addCard(event) {
   event.preventDefault();
-  let cardData = {};
+  const cardData = {};
   cardData.name = inputPlaceName.value;
   cardData.link = inputPlaceLink.value;
   if (inputPlaceName.value && inputPlaceLink.value) {
