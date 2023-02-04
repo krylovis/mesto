@@ -1,5 +1,5 @@
 import { initialCards } from './initialCards.js';
-import { renderCards } from './elements.js';
+import { renderCards } from './cardsRenderer.js';
 
 let popupProfileForm = document.querySelector('.popup_type_profile-form');
 let popupNewPlace = document.querySelector('.popup_type_new-place');
