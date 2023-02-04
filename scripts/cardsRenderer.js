@@ -1,7 +1,7 @@
 import { initialCards } from './initialCards.js';
 import { openPlacePhoto } from './index.js';
 
-const cardsContainer = document.querySelector('.cardsContainer');
+const cardsContainer = document.querySelector('.elements');
 const cardsContainerTemplate = document.querySelector('#element-template').content;
 
 export function renderCards() {
@@ -10,6 +10,7 @@ export function renderCards() {
     const element = cardsContainerTemplate.cloneNode(true);
   
     element.querySelector('.element__title').textContent = item.name;
+    element.querySelector('.element__image').alt = item.name;
     element.querySelector('.element__image').src = item.link;
 
     element.querySelector('.element__image').addEventListener('click', (event) => {
