@@ -62,35 +62,10 @@ function openPlacePhoto(event) {
 
 // Добавить новое место
 
-profileAddButton.addEventListener('click', () => {
-  popupNewPlace.classList.toggle('popup_opened');
-});
-
-function addCard(event) {
-  event.preventDefault();
-  let card = {};
-  card.name = inputPlaceName.value;
-  card.link = inputPlaceLink.value;
-  if (inputPlaceName.value && inputPlaceLink.value) {
-    initialCards.unshift(card);
-    renderCards();
-    inputPlaceName.value = '';
-    inputPlaceLink.value = '';
-    closePopup();
-  }
-}
-
-newPlaceForm.addEventListener('submit', addCard);
-
-// Создать новую карточку
-
 const cardsContainer = document.querySelector('.elements');
-const cardTemplate = document.querySelector('#element-template').content;
 
-function renderCards() {
-  cardsContainer.innerHTML = '';
-  initialCards.forEach(item => {
-    const element = cardTemplate.cloneNode(true);
+function createCard(item) {
+  const element = cardTemplate.cloneNode(true);
     const buttonDelete = element.querySelector('.element__trash');
     const cardImage = element.querySelector('.element__image');
     const card = element.querySelector('.element');
@@ -113,7 +88,38 @@ function renderCards() {
       card.remove();
     });
   
-    cardsContainer.append(element);
+    return element;
+}
+
+profileAddButton.addEventListener('click', () => {
+  popupNewPlace.classList.toggle('popup_opened');
+});
+
+function addCard(event) {
+  event.preventDefault();
+  let cardData = {};
+  cardData.name = inputPlaceName.value;
+  cardData.link = inputPlaceLink.value;
+  if (inputPlaceName.value && inputPlaceLink.value) {
+    initialCards.unshift(cardData);
+    const card = createCard(cardData);
+    cardsContainer.prepend(card);
+    inputPlaceName.value = '';
+    inputPlaceLink.value = '';
+    closePopup();
+  }
+}
+
+newPlaceForm.addEventListener('submit', addCard);
+
+// Создать новую карточку
+
+const cardTemplate = document.querySelector('#element-template').content;
+
+function renderCards() {
+  initialCards.forEach(item => {
+    const card = createCard(item);
+    cardsContainer.append(card);
   });
 }
 
