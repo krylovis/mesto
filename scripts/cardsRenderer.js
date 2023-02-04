@@ -2,13 +2,15 @@ import { initialCards } from './initialCards.js';
 import { openPlacePhoto } from './index.js';
 
 const cardsContainer = document.querySelector('.elements');
-const cardsContainerTemplate = document.querySelector('#element-template').content;
+const cardTemplate = document.querySelector('#element-template').content;
 
 export function renderCards() {
   cardsContainer.innerHTML = '';
   initialCards.forEach(item => {
-    const element = cardsContainerTemplate.cloneNode(true);
+    const element = cardTemplate.cloneNode(true);
+    const buttonDelete = element.querySelector('.element__trash');
     const cardImage = element.querySelector('.element__image');
+    const card = element.querySelector('.element');
   
     element.querySelector('.element__title').textContent = item.name;
     cardImage.alt = item.name;
@@ -24,9 +26,8 @@ export function renderCards() {
       event.target.classList.toggle('element__like_active');
     });
     
-    element.querySelector('.element__trash').addEventListener('click', (event) => {
-      event.preventDefault();
-      event.target.parentElement.remove();
+    buttonDelete.addEventListener('click', () => {
+      card.remove();
     });
   
     cardsContainer.append(element);
