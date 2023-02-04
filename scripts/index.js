@@ -1,24 +1,24 @@
 import { initialCards } from './initialCards.js';
 
-let popupProfileForm = document.querySelector('.popup_type_profile-form');
-let popupNewPlace = document.querySelector('.popup_type_new-place');
-let popupPlacePhoto = document.querySelector('.popup_type_place-photo');
-let popupCloseButton = document.querySelectorAll('.popup__close-button');
+const popupProfileForm = document.querySelector('.popup_type_profile-form');
+const popupNewPlace = document.querySelector('.popup_type_new-place');
+const popupPlacePhoto = document.querySelector('.popup_type_place-photo');
+const popupCloseButtonList = document.querySelectorAll('.popup__close-button');
 
-let profileEditButton = document.querySelector('.profile__edit-button');
-let profileAddButton = document.querySelector('.profile__add-button');
-let profileSubtitle = document.querySelector('.profile__subtitle');
-let profileName = document.querySelector('.profile__name');
+const profileEditButton = document.querySelector('.profile__edit-button');
+const profileAddButton = document.querySelector('.profile__add-button');
+const profileSubtitle = document.querySelector('.profile__subtitle');
+const profileName = document.querySelector('.profile__name');
 
-let profileForm = document.querySelector('form[name="profileForm"]');
-let inputName = document.querySelector('#inputName');
-let inputJob = document.querySelector('#inputJob');
+const profileForm = document.querySelector('form[name="profileForm"]');
+const inputName = document.querySelector('#inputName');
+const inputJob = document.querySelector('#inputJob');
 
-let newPlaceForm = document.querySelector('form[name="newPlaceForm"]');
+const newPlaceForm = document.querySelector('form[name="newPlaceForm"]');
 const inputPlaceName = document.querySelector('#inputPlaceName');
 const inputPlaceLink = document.querySelector('#inputPlaceLink');
 
-popupCloseButton.forEach(item => {
+popupCloseButtonList.forEach(item => {
   item.addEventListener('click', () => {
     closePopup();
   });
