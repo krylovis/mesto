@@ -8,12 +8,13 @@ export function renderCards() {
   cardsContainer.innerHTML = '';
   initialCards.forEach(item => {
     const element = cardsContainerTemplate.cloneNode(true);
+    const cardImage = element.querySelector('.element__image');
   
     element.querySelector('.element__title').textContent = item.name;
-    element.querySelector('.element__image').alt = item.name;
-    element.querySelector('.element__image').src = item.link;
+    cardImage.alt = item.name;
+    cardImage.src = item.link;
 
-    element.querySelector('.element__image').addEventListener('click', (event) => {
+    cardImage.addEventListener('click', (event) => {
       event.preventDefault();
       openPlacePhoto(event);
     });
