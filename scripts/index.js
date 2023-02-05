@@ -108,7 +108,7 @@ function handleAddCard(event) {
     initialCards.unshift(cardData);
     const card = createCard(cardData);
     cardsContainer.prepend(card);
-    profileForm.reset();
+    newPlaceForm.reset();
     closePopup(popupNewPlace);
   }
 }
