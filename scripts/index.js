@@ -74,7 +74,7 @@ function createCard(item) {
   const buttonDelete = element.querySelector('.element__trash');
   const cardImage = element.querySelector('.element__image');
   const cardTitle = element.querySelector('.element__title');
-  const cardLike = element.querySelector('.element__like');
+  const buttonLike = element.querySelector('.element__like');
 
   cardTitle.textContent = item.name;
   cardImage.alt = item.name;
@@ -84,8 +84,8 @@ function createCard(item) {
     openPlacePhoto(cardImage, cardTitle);
   });
 
-  cardLike.addEventListener('click', () => {
-    cardLike.classList.toggle('element__like_active');
+  buttonLike.addEventListener('click', () => {
+    buttonLike.classList.toggle('element__like_active');
   });
 
   buttonDelete.addEventListener('click', () => {
