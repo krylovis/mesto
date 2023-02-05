@@ -99,7 +99,7 @@ profileAddButton.addEventListener('click', () => {
   openPopup(popupNewPlace);
 });
 
-function addCard() {
+function handleAddCard() {
   const cardData = {};
   cardData.name = inputPlaceName.value;
   cardData.link = inputPlaceLink.value;
@@ -113,7 +113,7 @@ function addCard() {
   }
 }
 
-newPlaceForm.addEventListener('submit', addCard);
+newPlaceForm.addEventListener('submit', handleAddCard);
 
 // Создать новую карточку
 
