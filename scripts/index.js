@@ -57,11 +57,9 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 const popupPhoto = document.querySelector('.popup__photo');
 const popupFigcaption = document.querySelector('.popup__figcaption');
 
-function openPlacePhoto(event) {
-  event.preventDefault();
-  popupPhoto.src = event.target.src;
-  popupPhoto.alt = event.target.alt;
-  const placeTitle = event.target.parentElement.querySelector('.element__title');
+function openPlacePhoto(placeImage, placeTitle) {
+  popupPhoto.src = placeImage.src;
+  popupPhoto.alt = placeImage.alt;
   popupFigcaption.textContent = placeTitle.textContent;
   openPopup(popupPlacePhoto);
 }
@@ -72,29 +70,29 @@ const cardsContainer = document.querySelector('.elements');
 
 function createCard(item) {
   const element = cardTemplate.cloneNode(true);
-    const buttonDelete = element.querySelector('.element__trash');
-    const cardImage = element.querySelector('.element__image');
-    const card = element.querySelector('.element');
-  
-    element.querySelector('.element__title').textContent = item.name;
-    cardImage.alt = item.name;
-    cardImage.src = item.link;
+  const card = element.querySelector('.element');
+  const buttonDelete = element.querySelector('.element__trash');
+  const cardImage = element.querySelector('.element__image');
+  const cardTitle = element.querySelector('.element__title');
 
-    cardImage.addEventListener('click', (event) => {
-      event.preventDefault();
-      openPlacePhoto(event);
-    });
+  cardTitle.textContent = item.name;
+  cardImage.alt = item.name;
+  cardImage.src = item.link;
 
-    element.querySelector('.element__like').addEventListener('click', (event) => {
-      event.preventDefault();
-      event.target.classList.toggle('element__like_active');
-    });
-    
-    buttonDelete.addEventListener('click', () => {
-      card.remove();
-    });
-  
-    return element;
+  cardImage.addEventListener('click', () => {
+    openPlacePhoto(cardImage, cardTitle);
+  });
+
+  element.querySelector('.element__like').addEventListener('click', (event) => {
+    event.preventDefault();
+    event.target.classList.toggle('element__like_active');
+  });
+
+  buttonDelete.addEventListener('click', () => {
+    card.remove();
+  });
+
+  return element;
 }
 
 profileAddButton.addEventListener('click', () => {
