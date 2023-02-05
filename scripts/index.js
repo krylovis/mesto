@@ -74,6 +74,7 @@ function createCard(item) {
   const buttonDelete = element.querySelector('.element__trash');
   const cardImage = element.querySelector('.element__image');
   const cardTitle = element.querySelector('.element__title');
+  const cardLike = element.querySelector('.element__like');
 
   cardTitle.textContent = item.name;
   cardImage.alt = item.name;
@@ -83,9 +84,8 @@ function createCard(item) {
     openPlacePhoto(cardImage, cardTitle);
   });
 
-  element.querySelector('.element__like').addEventListener('click', (event) => {
-    event.preventDefault();
-    event.target.classList.toggle('element__like_active');
+  cardLike.addEventListener('click', () => {
+    cardLike.classList.toggle('element__like_active');
   });
 
   buttonDelete.addEventListener('click', () => {
@@ -99,8 +99,7 @@ profileAddButton.addEventListener('click', () => {
   openPopup(popupNewPlace);
 });
 
-function addCard(event) {
-  event.preventDefault();
+function addCard() {
   const cardData = {};
   cardData.name = inputPlaceName.value;
   cardData.link = inputPlaceLink.value;
