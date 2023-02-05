@@ -99,7 +99,8 @@ profileAddButton.addEventListener('click', () => {
   openPopup(popupNewPlace);
 });
 
-function handleAddCard() {
+function handleAddCard(event) {
+  event.preventDefault();
   const cardData = {};
   cardData.name = inputPlaceName.value;
   cardData.link = inputPlaceLink.value;
@@ -107,8 +108,7 @@ function handleAddCard() {
     initialCards.unshift(cardData);
     const card = createCard(cardData);
     cardsContainer.prepend(card);
-    inputPlaceName.value = '';
-    inputPlaceLink.value = '';
+    profileForm.reset();
     closePopup(popupNewPlace);
   }
 }
