@@ -38,10 +38,12 @@
 
           <form action="profileFormAction" name="profileForm" class="popup__form">
             <label class="popup__label" for="inputName">
-              <input class="popup__input" id="inputName" type="text" name="name" placeholder="ФИО">
+              <input class="popup__input" id="inputName" type="text" name="name" placeholder="ФИО" required minlength="2" maxlength="40">
+              <span class="popup__input-error inputName-error"></span>
             </label>
             <label class="popup__label" for="inputJob">
-              <input class="popup__input" id="inputJob" type="text" name="job" placeholder="Профессия">
+              <input class="popup__input" id="inputJob" type="text" name="job" placeholder="Профессия" required minlength="2" maxlength="200">
+              <span class="popup__input-error inputJob-error"></span>
             </label>
             <button class="button popup__submit-button" type="submit" aria-label="Сохранить данные">Сохранить</button>
           </form>
@@ -56,10 +58,12 @@
 
           <form action="newPlaceFormAction" name="newPlaceForm" class="popup__form">
             <label class="popup__label" for="inputPlaceName">
-              <input class="popup__input" id="inputPlaceName" type="text" name="title" placeholder="Название">
+              <input class="popup__input" id="inputPlaceName" type="text" name="title" placeholder="Название" required minlength="2" maxlength="30">
+              <span class="popup__input-error inputPlaceName-error"></span>
             </label>
             <label class="popup__label" for="inputPlaceLink">
-              <input class="popup__input" id="inputPlaceLink" type="text" name="link" placeholder="Ссылка на картинку">
+              <input class="popup__input" id="inputPlaceLink" type="url" name="link" placeholder="Ссылка на картинку" required pattern="https://.*">
+              <span class="popup__input-error inputPlaceLink-error"></span>
             </label>
             <button class="button popup__submit-button" type="submit" aria-label="Создать место">Создать</button>
           </form>
@@ -96,6 +100,7 @@
 
   <script src="./scripts/initialCards.js" type="module"></script>
   <script src="./scripts/index.js" type="module"></script>
+  <script src="./scripts/validate.js" type="module"></script>
 </body>
 
 </html>
