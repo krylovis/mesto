@@ -21,8 +21,8 @@ const inputPlaceLink = document.querySelector('#inputPlaceLink');
 
 popupCloseButtonList.forEach(item => {
   item.addEventListener('click', () => {
-    popupList.forEach((iten) => {
-      closePopup(iten);
+    popupList.forEach((item) => {
+      closePopup(item);
     });
   });
 });
