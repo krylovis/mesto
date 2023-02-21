@@ -27,6 +27,14 @@ popupCloseButtonList.forEach(item => {
   });
 });
 
+popupList.forEach(item => {
+  item.addEventListener('click', (event) => {
+    const classList = Array.from(event.target.classList);
+    if (classList.includes('popup')) {
+      closePopup(item);
+    }
+  });
+});
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 };
