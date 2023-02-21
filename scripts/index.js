@@ -35,6 +35,15 @@ popupList.forEach(item => {
     }
   });
 });
+
+document.body.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    popupList.forEach((item) => {
+      closePopup(item);
+    });
+  };
+});
+
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 };
