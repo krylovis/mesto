@@ -36,20 +36,22 @@ popupList.forEach(item => {
   });
 });
 
-document.body.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
-    popupList.forEach((item) => {
-      closePopup(item);
-    });
-  };
-});
 
-function closePopup(popupElement) {
-  popupElement.classList.remove('popup_opened');
+const closeByEscape = (event) => {
+  if (event.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened);
+  };
 };
 
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
+};
+
+function closePopup(popupElement) {
+  popupElement.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 };
 
 // Редактировать профиль
