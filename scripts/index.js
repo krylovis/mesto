@@ -14,6 +14,7 @@ const profileName = document.querySelector('.profile__name');
 const profileForm = document.querySelector('form[name="profileForm"]');
 const inputName = document.querySelector('#inputName');
 const inputJob = document.querySelector('#inputJob');
+const profileSubmitButton = profileForm.querySelector('.popup__submit-button');
 
 const newPlaceForm = document.querySelector('form[name="newPlaceForm"]');
 const inputPlaceName = document.querySelector('#inputPlaceName');
@@ -61,6 +62,8 @@ profileEditButton.addEventListener('click', () => {
   openPopup(popupProfileForm);
   inputName.value = profileName.textContent;
   inputJob.value = profileSubtitle.textContent;
+  profileSubmitButton.classList.add('popup__submit-button_inactive');
+  profileSubmitButton.disabled = true;
 });
 
 function handleProfileFormSubmit(event) {
