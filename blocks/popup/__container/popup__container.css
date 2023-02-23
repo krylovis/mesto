@@ -6,6 +6,7 @@
   color: black;
   padding: 34px 36px 37px 36px;
   border-radius: 10px;
+  cursor: auto;
 }
 
 @media screen and (max-width: 700px) {
