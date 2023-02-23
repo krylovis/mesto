@@ -18,6 +18,7 @@ const inputJob = document.querySelector('#inputJob');
 const newPlaceForm = document.querySelector('form[name="newPlaceForm"]');
 const inputPlaceName = document.querySelector('#inputPlaceName');
 const inputPlaceLink = document.querySelector('#inputPlaceLink');
+const newPlaceSubmitButton = newPlaceForm.querySelector('.popup__submit-button');
 
 popupCloseButtonList.forEach(item => {
   item.addEventListener('click', () => {
@@ -116,6 +117,8 @@ function createCard(item) {
 
 profileAddButton.addEventListener('click', () => {
   openPopup(popupNewPlace);
+  newPlaceSubmitButton.classList.add('popup__submit-button_inactive');
+  newPlaceSubmitButton.disabled = true;
 });
 
 function handleAddCard(event) {
@@ -124,7 +127,6 @@ function handleAddCard(event) {
   cardData.name = inputPlaceName.value;
   cardData.link = inputPlaceLink.value;
   if (inputPlaceName.value && inputPlaceLink.value) {
-    initialCards.unshift(cardData);
     const card = createCard(cardData);
     cardsContainer.prepend(card);
     newPlaceForm.reset();
