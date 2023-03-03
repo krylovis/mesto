@@ -1,9 +1,9 @@
 import { initialCards } from './initialCards.js';
+import Card from './Card.js';
 
 const popupList = document.querySelectorAll('.popup');
 const popupProfileForm = document.querySelector('.popup_type_profile-form');
 const popupNewPlace = document.querySelector('.popup_type_new-place');
-const popupPlacePhoto = document.querySelector('.popup_type_place-photo');
 const popupCloseButtonList = document.querySelectorAll('.popup__close-button');
 
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -75,48 +75,9 @@ function handleProfileFormSubmit(event) {
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
-// Открыть фото
-
-const popupPhoto = document.querySelector('.popup__photo');
-const popupFigcaption = document.querySelector('.popup__figcaption');
-
-function openPlacePhoto(placeImage, placeTitle) {
-  popupPhoto.src = placeImage.src;
-  popupPhoto.alt = placeImage.alt;
-  popupFigcaption.textContent = placeTitle.textContent;
-  openPopup(popupPlacePhoto);
-}
-
 // Добавить новое место
 
 const cardsContainer = document.querySelector('.elements');
-
-function createCard(item) {
-  const element = cardTemplate.cloneNode(true);
-  const card = element.querySelector('.element');
-  const buttonDelete = element.querySelector('.element__trash');
-  const cardImage = element.querySelector('.element__image');
-  const cardTitle = element.querySelector('.element__title');
-  const buttonLike = element.querySelector('.element__like');
-
-  cardTitle.textContent = item.name;
-  cardImage.alt = item.name;
-  cardImage.src = item.link;
-
-  cardImage.addEventListener('click', () => {
-    openPlacePhoto(cardImage, cardTitle);
-  });
-
-  buttonLike.addEventListener('click', () => {
-    buttonLike.classList.toggle('element__like_active');
-  });
-
-  buttonDelete.addEventListener('click', () => {
-    card.remove();
-  });
-
-  return element;
-}
 
 profileAddButton.addEventListener('click', () => {
   openPopup(popupNewPlace);
@@ -130,8 +91,9 @@ function handleAddCard(event) {
   cardData.name = inputPlaceName.value;
   cardData.link = inputPlaceLink.value;
   if (inputPlaceName.value && inputPlaceLink.value) {
-    const card = createCard(cardData);
-    cardsContainer.prepend(card);
+    const card = new Card(cardData, '#element-template');
+    const cardElement = card.generateCard();
+    cardsContainer.prepend(cardElement);
     newPlaceForm.reset();
     closePopup(popupNewPlace);
   }
@@ -141,12 +103,11 @@ newPlaceForm.addEventListener('submit', handleAddCard);
 
 // Создать новую карточку
 
-const cardTemplate = document.querySelector('#element-template').content;
-
 function renderCards() {
   initialCards.forEach(item => {
-    const card = createCard(item);
-    cardsContainer.append(card);
+    const card = new Card(item, '#element-template');
+    const cardElement = card.generateCard();
+    cardsContainer.append(cardElement);
   });
 }
 
