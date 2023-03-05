@@ -1,9 +1,10 @@
 import { initialCards } from './initialCards.js';
+import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 
 const popupList = document.querySelectorAll('.popup');
 const popupProfileForm = document.querySelector('.popup_type_profile-form');
-const popupNewPlace = document.querySelector('.popup_type_new-place');
+const popupNewPlaceForm = document.querySelector('.popup_type_new-place');
 const popupCloseButtonList = document.querySelectorAll('.popup__close-button');
 
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -20,6 +21,16 @@ const newPlaceForm = document.querySelector('form[name="newPlaceForm"]');
 const inputPlaceName = document.querySelector('#inputPlaceName');
 const inputPlaceLink = document.querySelector('#inputPlaceLink');
 const newPlaceSubmitButton = newPlaceForm.querySelector('.popup__submit-button');
+
+const formSelectors = {
+  label: '.popup__label',
+  input: '.popup__input',
+  inputTypeError: '.popup__input_type_error',
+  inputError: '.popup__input-error',
+  inputErrorActive: 'popup__input-error_active',
+  submitBtn: '.popup__submit-button',
+  submitBtnInactive: 'popup__submit-button_inactive',
+};
 
 popupCloseButtonList.forEach(item => {
   item.addEventListener('click', () => {
@@ -58,7 +69,11 @@ function closePopup(popupElement) {
 
 // Редактировать профиль
 
+const profileFormValidation = new FormValidator(formSelectors, popupProfileForm);
+profileFormValidation.enableValidation();
+
 profileEditButton.addEventListener('click', () => {
+  profileFormValidation.resetValidation();
   openPopup(popupProfileForm);
   inputName.value = profileName.textContent;
   inputJob.value = profileSubtitle.textContent;
@@ -77,10 +92,14 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 // Добавить новое место
 
+const newPlaceFormValidation = new FormValidator(formSelectors, popupNewPlaceForm);
+newPlaceFormValidation.enableValidation();
+
 const cardsContainer = document.querySelector('.elements');
 
 profileAddButton.addEventListener('click', () => {
-  openPopup(popupNewPlace);
+  newPlaceFormValidation.resetValidation();
+  openPopup(popupNewPlaceForm);
   newPlaceSubmitButton.classList.add('popup__submit-button_inactive');
   newPlaceSubmitButton.disabled = true;
 });
@@ -95,7 +114,7 @@ function handleAddCard(event) {
     const cardElement = card.generateCard();
     cardsContainer.prepend(cardElement);
     newPlaceForm.reset();
-    closePopup(popupNewPlace);
+    closePopup(popupNewPlaceForm);
   }
 }
 
