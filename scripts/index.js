@@ -101,15 +101,19 @@ profileAddButton.addEventListener('click', () => {
   openPopup(popupNewPlaceForm);
 });
 
+const createCard = (data, template) => {
+  const card = new Card(data, template);
+  const cardElement = card.generateCard();
+  return cardElement;
+};
+
 function handleAddCard(event) {
   event.preventDefault();
   const cardData = {};
   cardData.name = inputPlaceName.value;
   cardData.link = inputPlaceLink.value;
   if (inputPlaceName.value && inputPlaceLink.value) {
-    const card = new Card(cardData, '#element-template');
-    const cardElement = card.generateCard();
-    cardsContainer.prepend(cardElement);
+    cardsContainer.prepend(createCard(cardData, '#element-template'));
     newPlaceForm.reset();
     closePopup(popupNewPlaceForm);
   }
@@ -121,9 +125,7 @@ newPlaceForm.addEventListener('submit', handleAddCard);
 
 function renderCards() {
   initialCards.forEach(item => {
-    const card = new Card(item, '#element-template');
-    const cardElement = card.generateCard();
-    cardsContainer.append(cardElement);
+    cardsContainer.append(createCard(item, '#element-template'));
   });
 }
 
