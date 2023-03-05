@@ -43,10 +43,6 @@ export default class Card {
     popupCloseButton.addEventListener('click', () => {
       this._handleClosePopup();
     });
-
-    popupPlacePhoto.addEventListener('click', () => {
-      this._handleClosePopup();
-    });
   }
 
   _closeByEscape = (event) => {
