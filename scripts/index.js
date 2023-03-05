@@ -77,8 +77,6 @@ profileEditButton.addEventListener('click', () => {
   openPopup(popupProfileForm);
   inputName.value = profileName.textContent;
   inputJob.value = profileSubtitle.textContent;
-  profileSubmitButton.classList.add('popup__submit-button_inactive');
-  profileSubmitButton.disabled = true;
 });
 
 function handleProfileFormSubmit(event) {
@@ -98,10 +96,9 @@ newPlaceFormValidation.enableValidation();
 const cardsContainer = document.querySelector('.elements');
 
 profileAddButton.addEventListener('click', () => {
+  newPlaceForm.reset();
   newPlaceFormValidation.resetValidation();
   openPopup(popupNewPlaceForm);
-  newPlaceSubmitButton.classList.add('popup__submit-button_inactive');
-  newPlaceSubmitButton.disabled = true;
 });
 
 function handleAddCard(event) {
