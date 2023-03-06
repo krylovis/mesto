@@ -15,12 +15,10 @@ const profileName = document.querySelector('.profile__name');
 const profileForm = document.querySelector('form[name="profileForm"]');
 const inputName = document.querySelector('#inputName');
 const inputJob = document.querySelector('#inputJob');
-const profileSubmitButton = profileForm.querySelector('.popup__submit-button');
 
 const newPlaceForm = document.querySelector('form[name="newPlaceForm"]');
 const inputPlaceName = document.querySelector('#inputPlaceName');
 const inputPlaceLink = document.querySelector('#inputPlaceLink');
-const newPlaceSubmitButton = newPlaceForm.querySelector('.popup__submit-button');
 
 const formSelectors = {
   label: '.popup__label',
