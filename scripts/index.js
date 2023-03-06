@@ -5,7 +5,6 @@ import Card from './Card.js';
 const popupList = document.querySelectorAll('.popup');
 const popupProfileForm = document.querySelector('.popup_type_profile-form');
 const popupNewPlaceForm = document.querySelector('.popup_type_new-place');
-const popupCloseButtonList = document.querySelectorAll('.popup__close-button');
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
@@ -41,7 +40,6 @@ popupList.forEach((popup) => {
   })
 });
 
-
 const closeByEscape = (event) => {
   if (event.key === 'Escape') {
     const popupOpened = document.querySelector('.popup_opened');
@@ -59,13 +57,26 @@ function closePopup(popupElement) {
   document.removeEventListener('keydown', closeByEscape);
 };
 
+// Валидация форм
+
+const formValidators = {};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formSelectors, formElement);
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(formSelectors);
+
 // Редактировать профиль
 
-const profileFormValidation = new FormValidator(formSelectors, popupProfileForm);
-profileFormValidation.enableValidation();
-
 profileEditButton.addEventListener('click', () => {
-  profileFormValidation.resetValidation();
+  formValidators['profileForm'].resetValidation();
   openPopup(popupProfileForm);
   inputName.value = profileName.textContent;
   inputJob.value = profileSubtitle.textContent;
@@ -82,14 +93,11 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 // Добавить новое место
 
-const newPlaceFormValidation = new FormValidator(formSelectors, popupNewPlaceForm);
-newPlaceFormValidation.enableValidation();
-
 const cardsContainer = document.querySelector('.elements');
 
 profileAddButton.addEventListener('click', () => {
   newPlaceForm.reset();
-  newPlaceFormValidation.resetValidation();
+  formValidators['newPlaceForm'].resetValidation();
   openPopup(popupNewPlaceForm);
 });
 
