@@ -6,6 +6,10 @@ const popupList = document.querySelectorAll('.popup');
 const popupProfileForm = document.querySelector('.popup_type_profile-form');
 const popupNewPlaceForm = document.querySelector('.popup_type_new-place');
 
+const popupPlacePhoto = document.querySelector('.popup_type_place-photo');
+const popupPhoto = document.querySelector('.popup__photo');
+const popupFigcaption = document.querySelector('.popup__figcaption');
+
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 const profileSubtitle = document.querySelector('.profile__subtitle');
@@ -57,6 +61,14 @@ function closePopup(popupElement) {
   document.removeEventListener('keydown', closeByEscape);
 };
 
+function handleCardClick(name, image) {
+  popupPhoto.src = image;
+  popupPhoto.alt = name;
+  popupFigcaption.textContent = name;
+  popupPlacePhoto.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
+};
+
 // Валидация форм
 
 const formValidators = {};
@@ -102,7 +114,7 @@ profileAddButton.addEventListener('click', () => {
 });
 
 const createCard = (data, template) => {
-  const card = new Card(data, template);
+  const card = new Card(data, template, handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 };
