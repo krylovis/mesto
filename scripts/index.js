@@ -32,21 +32,15 @@ const formSelectors = {
   submitBtnInactive: 'popup__submit-button_inactive',
 };
 
-popupCloseButtonList.forEach(item => {
-  item.addEventListener('click', () => {
-    popupList.forEach((item) => {
-      closePopup(item);
-    });
-  });
-});
-
-popupList.forEach(item => {
-  item.addEventListener('click', (event) => {
-    const classList = Array.from(event.target.classList);
-    if (classList.includes('popup')) {
-      closePopup(item);
+popupList.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if(evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    };
+    if(evt.target.classList.contains('popup__close-button')) {
+      closePopup(popup);
     }
-  });
+  })
 });
 
 
