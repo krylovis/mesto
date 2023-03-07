@@ -72,8 +72,7 @@ function handleCardClick(name, image) {
   popupPhoto.src = image;
   popupPhoto.alt = name;
   popupFigcaption.textContent = name;
-  popupPlacePhoto.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
+  openPopup(popupPlacePhoto);
 };
 
 // Валидация форм
