@@ -15,6 +15,7 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._elementImage = this._element.querySelector('.element__image');
+    this._elementLike = this._element.querySelector('.element__like');
     this._setEventListeners();
 
     this._element.querySelector('.element__title').textContent = this._name;
@@ -25,8 +26,6 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._elementLike = this._element.querySelector('.element__like');
-
     this._elementLike.addEventListener('click', () => {
       this._handleButtonLikeClick();
     });
