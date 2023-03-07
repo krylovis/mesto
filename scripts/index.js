@@ -51,12 +51,6 @@ const closeByEscape = (event) => {
   };
 };
 
-const resetPopupPlacePhoto = () => {
-  popupPhoto.src = '';
-  popupPhoto.alt = '';
-  popupFigcaption.textContent = '';
-};
-
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
@@ -65,7 +59,6 @@ function openPopup(popupElement) {
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEscape);
-  if (popupElement === popupPlacePhoto) resetPopupPlacePhoto();
 };
 
 function handleCardClick(name, image) {
