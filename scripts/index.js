@@ -1,4 +1,5 @@
 import { initialCards } from './initialCards.js';
+import Section from './Section.js';
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 
@@ -132,12 +133,11 @@ function handleAddCard(event) {
 
 newPlaceForm.addEventListener('submit', handleAddCard);
 
-// Создать новую карточку
+// Создать секцию с карточками
 
-function renderCards() {
-  initialCards.forEach(item => {
-    cardsContainer.append(createCard(item, '#element-template'));
-  });
-}
+const cardList = new Section({ items: initialCards, renderer: (item) => {
+  const card = createCard(item, '#element-template');
+  cardList.setItem(card);
+} }, '.elements');
 
-renderCards();
+cardList.renderItems();
