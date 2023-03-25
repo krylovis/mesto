@@ -34,34 +34,6 @@ const formSelectors = {
   submitBtnInactive: 'popup__submit-button_inactive',
 };
 
-popupList.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup);
-    };
-    if (evt.target.classList.contains('popup__close-button')) {
-      closePopup(popup);
-    }
-  })
-});
-
-const closeByEscape = (event) => {
-  if (event.key === 'Escape') {
-    const popupOpened = document.querySelector('.popup_opened');
-    closePopup(popupOpened);
-  };
-};
-
-function openPopup(popupElement) {
-  popupElement.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
-};
-
-function closePopup(popupElement) {
-  popupElement.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEscape);
-};
-
 function handleCardClick(name, image) {
   popupPhoto.src = image;
   popupPhoto.alt = name;
