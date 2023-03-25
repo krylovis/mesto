@@ -2,6 +2,7 @@ import { initialCards } from './initialCards.js';
 import Section from './Section.js';
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
+import PopupWithImage from './PopupWithImage.js';
 
 const popupList = document.querySelectorAll('.popup');
 const popupProfileForm = document.querySelector('.popup_type_profile-form');
@@ -34,11 +35,12 @@ const formSelectors = {
   submitBtnInactive: 'popup__submit-button_inactive',
 };
 
+// Popup с фотографией
+
 function handleCardClick(name, image) {
-  popupPhoto.src = image;
-  popupPhoto.alt = name;
-  popupFigcaption.textContent = name;
-  openPopup(popupPlacePhoto);
+  const popupWithImage = new PopupWithImage('.popup_type_place-photo');
+  popupWithImage.open(name, image);
+  popupWithImage.setEventListeners();
 };
 
 // Валидация форм
