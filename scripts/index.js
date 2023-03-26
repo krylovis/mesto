@@ -3,6 +3,7 @@ import Section from './Section.js';
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
 
 const popupList = document.querySelectorAll('.popup');
 const popupProfileForm = document.querySelector('.popup_type_profile-form');
@@ -59,7 +60,7 @@ const enableValidation = () => {
 
 enableValidation(formSelectors);
 
-// Редактировать профиль
+// Popup профиля
 
 profileEditButton.addEventListener('click', () => {
   formValidators['profileForm'].resetValidation();
@@ -77,41 +78,35 @@ function handleProfileFormSubmit(event) {
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
-// Добавить новое место
-
-const cardsContainer = document.querySelector('.elements');
-
-profileAddButton.addEventListener('click', () => {
-  newPlaceForm.reset();
-  formValidators['newPlaceForm'].resetValidation();
-  openPopup(popupNewPlaceForm);
-});
-
+// Создать карточку
 const createCard = (data, template) => {
   const card = new Card(data, template, handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 };
 
-function handleAddCard(event) {
-  event.preventDefault();
-  const cardData = {};
-  cardData.name = inputPlaceName.value;
-  cardData.link = inputPlaceLink.value;
-  if (inputPlaceName.value && inputPlaceLink.value) {
-    cardsContainer.prepend(createCard(cardData, '#element-template'));
-    newPlaceForm.reset();
-    closePopup(popupNewPlaceForm);
-  }
-}
-
-newPlaceForm.addEventListener('submit', handleAddCard);
-
 // Создать секцию с карточками
-
 const cardList = new Section({ items: initialCards, renderer: (item) => {
   const card = createCard(item, '#element-template');
   cardList.setItem(card);
 } }, '.elements');
 
 cardList.renderItems();
+
+// Popup новое место
+profileAddButton.addEventListener('click', () => {
+  newPlaceForm.reset();
+  formValidators['newPlaceForm'].resetValidation();
+  popupAddCard.open();
+  popupAddCard.setEventListeners();
+});
+
+const cardsContainer = document.querySelector('.elements');
+const popupAddCard = new PopupWithForm({
+  selector: '.popup_type_new-place',
+  handleFormSubmit: (formData) => {
+    cardsContainer.prepend(createCard(formData, '#element-template'));
+    newPlaceForm.reset();
+    popupAddCard.close();
+  }
+});
