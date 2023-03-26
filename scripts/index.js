@@ -6,26 +6,11 @@ import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
 
-const popupList = document.querySelectorAll('.popup');
-const popupProfileForm = document.querySelector('.popup_type_profile-form');
-const popupNewPlaceForm = document.querySelector('.popup_type_new-place');
-
-const popupPlacePhoto = document.querySelector('.popup_type_place-photo');
-const popupPhoto = document.querySelector('.popup__photo');
-const popupFigcaption = document.querySelector('.popup__figcaption');
-
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
-const profileSubtitle = document.querySelector('.profile__subtitle');
-const profileName = document.querySelector('.profile__name');
 
-const profileForm = document.querySelector('form[name="profileForm"]');
 const inputName = document.querySelector('#inputName');
 const inputJob = document.querySelector('#inputJob');
-
-const newPlaceForm = document.querySelector('form[name="newPlaceForm"]');
-const inputPlaceName = document.querySelector('#inputPlaceName');
-const inputPlaceLink = document.querySelector('#inputPlaceLink');
 
 const formSelectors = {
   label: '.popup__label',
@@ -102,7 +87,6 @@ cardList.renderItems();
 
 // Popup новое место
 profileAddButton.addEventListener('click', () => {
-  newPlaceForm.reset();
   formValidators['newPlaceForm'].resetValidation();
   popupAddCard.open();
   popupAddCard.setEventListeners();
@@ -113,7 +97,6 @@ const popupAddCard = new PopupWithForm({
   selector: '.popup_type_new-place',
   handleFormSubmit: (formData) => {
     cardsContainer.prepend(createCard(formData, '#element-template'));
-    newPlaceForm.reset();
     popupAddCard.close();
   }
 });
