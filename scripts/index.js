@@ -4,6 +4,7 @@ import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
 
 const popupList = document.querySelectorAll('.popup');
 const popupProfileForm = document.querySelector('.popup_type_profile-form');
@@ -62,21 +63,27 @@ enableValidation(formSelectors);
 
 // Popup профиля
 
-profileEditButton.addEventListener('click', () => {
-  formValidators['profileForm'].resetValidation();
-  openPopup(popupProfileForm);
-  inputName.value = profileName.textContent;
-  inputJob.value = profileSubtitle.textContent;
+const userInfo = new UserInfo({
+  name: '.profile__name',
+  job: '.profile__subtitle',
 });
 
-function handleProfileFormSubmit(event) {
-  event.preventDefault();
-  profileName.textContent = inputName.value;
-  profileSubtitle.textContent = inputJob.value;
-  closePopup(popupProfileForm);
-}
+const popupUserInfo = new PopupWithForm({
+  selector: '.popup_type_profile-form',
+  handleFormSubmit: (formData) => {
+    userInfo.setUserInfo(formData);
+    popupUserInfo.close();
+  }
+});
 
-profileForm.addEventListener('submit', handleProfileFormSubmit);
+profileEditButton.addEventListener('click', () => {
+  formValidators['profileForm'].resetValidation();
+  const data = userInfo.getUserInfo();
+  inputName.value = data.name;
+  inputJob.value = data.job;
+  popupUserInfo.open();
+  popupUserInfo.setEventListeners();
+});
 
 // Создать карточку
 const createCard = (data, template) => {
