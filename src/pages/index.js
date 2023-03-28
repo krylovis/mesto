@@ -84,23 +84,25 @@ const createCard = (data, template) => {
 // Создать секцию с карточками
 const cardList = new Section({ renderer: (item) => {
   const card = createCard(item, '#element-template');
-  cardList.setItem(card);
+  cardList.setItemAppend(card);
 } }, '.elements');
 
 cardList.renderItems(initialCards);
 
 // Popup новое место
-profileAddButton.addEventListener('click', () => {
-  formValidators['newPlaceForm'].resetValidation();
-  popupAddCard.open();
-  popupAddCard.setEventListeners();
-});
-
 const cardsContainer = document.querySelector('.elements');
 const popupAddCard = new PopupWithForm({
   selector: '.popup_type_new-place',
   handleFormSubmit: (formData) => {
-    cardsContainer.prepend(createCard(formData, '#element-template'));
+    cardList.setItemPrepend(createCard(formData, '#element-template'));
     popupAddCard.close();
   }
 });
+popupAddCard.setEventListeners();
+
+function openAddCardPopup() {
+  formValidators['newPlaceForm'].resetValidation();
+  popupAddCard.open();
+};
+
+profileAddButton.addEventListener('click', openAddCardPopup);
