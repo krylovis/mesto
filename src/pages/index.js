@@ -25,10 +25,11 @@ const formSelectors = {
 
 // Popup с фотографией
 
+const popupWithImage = new PopupWithImage('.popup_type_place-photo');
+popupWithImage.setEventListeners();
+
 function handleCardClick(name, image) {
-  const popupWithImage = new PopupWithImage('.popup_type_place-photo');
   popupWithImage.open(name, image);
-  popupWithImage.setEventListeners();
 };
 
 // Валидация форм
