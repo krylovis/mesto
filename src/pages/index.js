@@ -62,15 +62,17 @@ const popupUserInfo = new PopupWithForm({
     popupUserInfo.close();
   }
 });
+popupUserInfo.setEventListeners();
 
-profileEditButton.addEventListener('click', () => {
+function openProfilePopup() {
   formValidators['profileForm'].resetValidation();
   const data = userInfo.getUserInfo();
   inputName.value = data.name;
   inputJob.value = data.job;
   popupUserInfo.open();
-  popupUserInfo.setEventListeners();
-});
+};
+
+profileEditButton.addEventListener('click', openProfilePopup);
 
 // Создать карточку
 const createCard = (data, template) => {
