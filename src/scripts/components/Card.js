@@ -45,5 +45,6 @@ export default class Card {
 
   _handleButtonLikeDelete() {
     this._element.remove();
+    this._element = null;
   }
 }
