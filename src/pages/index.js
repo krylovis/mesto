@@ -24,7 +24,6 @@ const formSelectors = {
 };
 
 // Popup с фотографией
-
 const popupWithImage = new PopupWithImage('.popup_type_place-photo');
 popupWithImage.setEventListeners();
 
@@ -33,7 +32,6 @@ function handleCardClick(name, image) {
 };
 
 // Валидация форм
-
 const formValidators = {};
 
 const enableValidation = () => {
@@ -49,7 +47,6 @@ const enableValidation = () => {
 enableValidation(formSelectors);
 
 // Popup профиля
-
 const userInfo = new UserInfo({
   name: '.profile__name',
   job: '.profile__subtitle',
