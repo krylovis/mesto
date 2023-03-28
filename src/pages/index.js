@@ -79,12 +79,12 @@ const createCard = (data, template) => {
 };
 
 // Создать секцию с карточками
-const cardList = new Section({ items: initialCards, renderer: (item) => {
+const cardList = new Section({ renderer: (item) => {
   const card = createCard(item, '#element-template');
   cardList.setItem(card);
 } }, '.elements');
 
-cardList.renderItems();
+cardList.renderItems(initialCards);
 
 // Popup новое место
 profileAddButton.addEventListener('click', () => {
