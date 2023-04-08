@@ -6,6 +6,7 @@ import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
@@ -22,6 +23,24 @@ const formSelectors = {
   submitBtn: '.popup__submit-button',
   submitBtnInactive: 'popup__submit-button_inactive',
 };
+
+// Api
+
+const token = '14893dca-a279-433c-a27c-967896487d71';
+const cohort = 'cohort-63';
+const baseUrl = `https://mesto.nomoreparties.co/v1/${cohort}`;
+const headers = {
+  authorization: token,
+  'Content-Type': 'application/json'
+};
+
+const api = new Api({
+  baseUrl: baseUrl,
+  headers: headers
+});
+
+const info = api.getUserInfo();
+info.then(res => console.log('res', res));
 
 // Popup с фотографией
 const popupWithImage = new PopupWithImage('.popup_type_place-photo');

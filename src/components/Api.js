@@ -1,7 +1,3 @@
-// const token = '14893dca-a279-433c-a27c-967896487d71';
-// const cohort = 'cohort-63';
-// const baseUrl = `https://mesto.nomoreparties.co/v1/${cohort}`;
-
 // fetch(`${baseUrl}/cards`, {
 //   headers: {
 //     authorization: token
@@ -24,5 +20,16 @@ export default class Api {
   constructor({baseUrl, headers}) {
     this._baseUrl = baseUrl;
     this._headers = headers;
+  }
+
+  _getResponse(res) {
+    if(res.ok) return res.json();
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
+  getUserInfo() {
+    return fetch(this._baseUrl + '/users/me', {
+      headers: this._headers,
+    }).then(this._getResponse)
   }
 }
