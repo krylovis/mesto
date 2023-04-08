@@ -32,4 +32,59 @@ export default class Api {
       headers: this._headers,
     }).then(this._getResponse)
   }
+
+  getCards() {
+    return fetch(this._baseUrl + '/cards', {
+      headers: this._headers,
+    }).then(this._getResponse)
+  }
+
+  getData() {
+    return Promise.all([this.getUserInfo, this.getCards]);
+  }
+
+  editUserInfo(body) {
+    return fetch(this._baseUrl + '/users/me', {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(body)
+    }).then(this._getResponse)
+  }
+
+  addCard(body) {
+    return fetch(this._baseUrl + '/cards', {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(body)
+    }).then(this._getResponse)
+  }
+
+  deleteCard(cardID) {
+    return fetch(this._baseUrl + `/cards/${cardID}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then(this._getResponse)
+  }
+
+  addLike(cardID) {
+    return fetch(this._baseUrl + `/cards/${cardID}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+    }).then(this._getResponse)
+  }
+
+  removeLike(cardID) {
+    return fetch(this._baseUrl + `/cards/${cardID}/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then(this._getResponse)
+  }
+
+  editAvatar(body) {
+    return fetch(this._baseUrl + '/users/me/avatar', {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(body)
+    }).then(this._getResponse)
+  }
 }
