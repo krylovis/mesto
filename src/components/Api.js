@@ -40,7 +40,7 @@ export default class Api {
   }
 
   getData() {
-    return Promise.all([this.getUserInfo, this.getCards]);
+    return Promise.all([this.getUserInfo(), this.getCards()]);
   }
 
   editUserInfo(body) {
