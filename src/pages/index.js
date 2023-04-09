@@ -39,8 +39,10 @@ const api = new Api({
   headers: headers
 });
 
-const info = api.getUserInfo();
-info.then(res => console.log('res', res));
+api.getData().then((res) => {
+  const [user, cards] = res;
+  userInfo.setUserInfo(user);
+}).catch(err => console.log(err));
 
 // Popup с фотографией
 const popupWithImage = new PopupWithImage('.popup_type_place-photo');
@@ -69,6 +71,7 @@ enableValidation(formSelectors);
 const userInfo = new UserInfo({
   name: '.profile__name',
   job: '.profile__subtitle',
+  avatar: '.profile__avatar',
 });
 
 const popupUserInfo = new PopupWithForm({
@@ -106,7 +109,6 @@ const cardList = new Section({ renderer: (item) => {
 cardList.renderItems(initialCards);
 
 // Popup новое место
-const cardsContainer = document.querySelector('.elements');
 const popupAddCard = new PopupWithForm({
   selector: '.popup_type_new-place',
   handleFormSubmit: (formData) => {
