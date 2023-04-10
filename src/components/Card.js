@@ -1,9 +1,15 @@
 export default class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, templateSelector, handleCardClick, handleButtonLikeClick, handleButtonDelete, userID) {
     this._name = data.name;
     this._image = data.link;
+    this._likes = data.likes;
+    this._cardID = data._id;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleButtonLikeClick = handleButtonLikeClick;
+    this._handleButtonDelete = handleButtonDelete;
+    this._userID = userID;
+    this._isOwner = this._userID === data.owner._id;
   }
 
   _getTemplate() {
@@ -14,13 +20,25 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+
+    this._elementTitle = this._element.querySelector('.element__title');
     this._elementImage = this._element.querySelector('.element__image');
+    this._elementCounter = this._element.querySelector('.element__counter');
     this._elementLike = this._element.querySelector('.element__like');
+    this._elementCounter = this._element.querySelector('.element__counter');
+    this._elementTrash = this._element.querySelector('.element__trash');
+
+    if(!this._isOwner) {
+      this._elementTrash.remove();
+      this._elementTrash = null;
+    };
+
     this._setEventListeners();
 
-    this._element.querySelector('.element__title').textContent = this._name;
+    this._elementTitle.textContent = this._name;
     this._elementImage.alt = this._name;
     this._elementImage.src = this._image;
+    this._elementCounter.textContent = this._likes.length;
 
     return this._element;
   }
@@ -30,21 +48,22 @@ export default class Card {
       this._handleButtonLikeClick();
     });
 
-    this._element.querySelector('.element__trash').addEventListener('click', () => {
-      this._handleButtonLikeDelete();
+    this._elementImage.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._image);
     });
 
-    this._elementImage.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._image)
-    });
+    if(this._isOwner) {
+      this._elementTrash.addEventListener('click', () => {
+        this._handleButtonDelete();
+      });
+    };
   };
 
-  _handleButtonLikeClick() {
+  togglelike() {
     this._elementLike.classList.toggle('element__like_active');
-  }
+  };
 
-  _handleButtonLikeDelete() {
-    this._element.remove();
-    this._element = null;
-  }
+  updateCounter(data) {
+    this._elementCounter.textContent = data.length;
+  };
 }

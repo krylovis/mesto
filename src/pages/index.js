@@ -24,8 +24,14 @@ const formSelectors = {
   submitBtnInactive: 'popup__submit-button_inactive',
 };
 
-// Api
+// UserInfo
+const userInfo = new UserInfo({
+  name: '.profile__name',
+  job: '.profile__subtitle',
+  avatar: '.profile__avatar',
+});
 
+// Api
 const token = '14893dca-a279-433c-a27c-967896487d71';
 const cohort = 'cohort-63';
 const baseUrl = `https://mesto.nomoreparties.co/v1/${cohort}`;
@@ -42,6 +48,7 @@ const api = new Api({
 api.getData().then((res) => {
   const [user, cards] = res;
   userInfo.setUserInfo(user);
+  cardList.renderItems(cards);
 }).catch(err => console.log(err));
 
 // Popup с фотографией
@@ -68,12 +75,6 @@ const enableValidation = () => {
 enableValidation(formSelectors);
 
 // Popup профиля
-const userInfo = new UserInfo({
-  name: '.profile__name',
-  job: '.profile__subtitle',
-  avatar: '.profile__avatar',
-});
-
 const popupUserInfo = new PopupWithForm({
   selector: '.popup_type_profile-form',
   handleFormSubmit: (formData) => {
@@ -105,8 +106,6 @@ const cardList = new Section({ renderer: (item) => {
   const card = createCard(item, '#element-template');
   cardList.setItemAppend(card);
 } }, '.elements');
-
-cardList.renderItems(initialCards);
 
 // Popup новое место
 const popupAddCard = new PopupWithForm({
