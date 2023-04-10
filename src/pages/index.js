@@ -94,8 +94,29 @@ function openProfilePopup() {
 profileEditButton.addEventListener('click', openProfilePopup);
 
 // Создать карточку
+// handleButtonLikeClick
+// handleButtonDelete
+
+function handleButtonLikeClick() {
+  if(!this.isMyLike) {
+    api.addLike(this.getCardID()).then(data => {
+      this.addlikeActive();
+      this.updateCounter(data);
+    });
+  } else {
+    api.removeLike(this.getCardID()).then(data => {
+      this.removelikeActive();
+      this.updateCounter(data);
+    });
+  }
+};
+
+function handleButtonDelete() {
+  
+};
+
 const createCard = (data, template) => {
-  const card = new Card(data, template, handleCardClick);
+  const card = new Card(data, template, handleCardClick, handleButtonLikeClick, handleButtonDelete, userInfo.getUserID());
   const cardElement = card.generateCard();
   return cardElement;
 };
