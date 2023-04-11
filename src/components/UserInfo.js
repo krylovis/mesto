@@ -20,9 +20,9 @@ export default class UserInfo {
     this._id = _id;
   }
 
-  editUserInfo({ name, job }) {
+  editUserInfo({ name, about }) {
     this._name.textContent = name;
-    this._job.textContent = job;
+    this._job.textContent = about;
   }
 
   setUserAvatar({ avatar }) {

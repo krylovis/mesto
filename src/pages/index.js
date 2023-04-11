@@ -77,7 +77,9 @@ enableValidation(formSelectors);
 const popupUserInfo = new PopupWithForm({
   selector: '.popup_type_profile-form',
   handleFormSubmit: (formData) => {
-    userInfo.setUserInfo(formData);
+    const { userName, job} = formData
+    api.editUserInfo({ name: userName, about: job});
+    userInfo.editUserInfo({ name: userName, about: job});
     popupUserInfo.close();
   }
 });
@@ -94,8 +96,6 @@ function openProfilePopup() {
 profileEditButton.addEventListener('click', openProfilePopup);
 
 // Создать карточку
-// handleButtonLikeClick
-// handleButtonDelete
 
 function handleButtonLikeClick() {
   if(!this.isMyLike) {
