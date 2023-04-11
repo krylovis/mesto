@@ -131,7 +131,9 @@ const cardList = new Section({ renderer: (item) => {
 const popupAddCard = new PopupWithForm({
   selector: '.popup_type_new-place',
   handleFormSubmit: (formData) => {
-    cardList.setItemPrepend(createCard(formData, '#element-template'));
+    api.addCard(formData).then(res => {
+      cardList.setItemPrepend(createCard(res, '#element-template'));
+    });
     popupAddCard.close();
   }
 });
