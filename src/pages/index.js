@@ -79,9 +79,12 @@ enableValidation(formSelectors);
 const popupEditAvatar = new PopupWithForm({
   selector: '.popup_type_new-avatar',
   handleFormSubmit: (formData) => {
-    const { link } = formData
-    api.editAvatar({ avatar: link });
-    userInfo.setUserAvatar({ avatar: link });
+    popupEditAvatar.renderLoading(true);
+    const { link } = formData;
+    api.editAvatar({ avatar: link })
+    .then(res => userInfo.setUserAvatar({ avatar: res.avatar }))
+    .catch(err => console.log(err))
+    .finally(() => popupEditAvatar.renderLoading(false));
     popupEditAvatar.close();
   }
 });
@@ -98,9 +101,10 @@ profileEditAvatarButton.addEventListener('click', openEditAvatar);
 const popupUserInfo = new PopupWithForm({
   selector: '.popup_type_profile-form',
   handleFormSubmit: (formData) => {
-    const { userName, job} = formData
-    api.editUserInfo({ name: userName, about: job});
-    userInfo.editUserInfo({ name: userName, about: job});
+    const { userName, job} = formData;
+    api.editUserInfo({ name: userName, about: job})
+    .then(res => userInfo.editUserInfo({ name: res.name, about: res.about}))
+    .catch(err => console.log(err));
     popupUserInfo.close();
   }
 });
@@ -119,15 +123,19 @@ profileEditButton.addEventListener('click', openProfilePopup);
 // Создать карточку
 function handleButtonLikeClick() {
   if(!this.isMyLike) {
-    api.addLike(this.getCardID()).then(data => {
+    api.addLike(this.getCardID())
+    .then(data => {
       this.addlikeActive();
       this.updateCounter(data);
-    }).catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
   } else {
-    api.removeLike(this.getCardID()).then(data => {
+    api.removeLike(this.getCardID())
+    .then(data => {
       this.removelikeActive();
       this.updateCounter(data);
-    }).catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
   }
 };
 
@@ -163,9 +171,11 @@ const cardList = new Section({ renderer: (item) => {
 const popupAddCard = new PopupWithForm({
   selector: '.popup_type_new-place',
   handleFormSubmit: (formData) => {
-    api.addCard(formData).then(res => {
-      cardList.setItemPrepend(createCard(res, '#element-template'));
-    }).catch(err => console.log(err));
+    popupAddCard.renderLoading(true);
+    api.addCard(formData)
+    .then(res => cardList.setItemPrepend(createCard(res, '#element-template')))
+    .catch(err => console.log(err))
+    .finally(() => popupAddCard.renderLoading(false));
     popupAddCard.close();
   }
 });
