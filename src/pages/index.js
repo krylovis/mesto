@@ -14,7 +14,6 @@ const profileAddButton = document.querySelector('.profile__add-button');
 
 const inputName = document.querySelector('#inputName');
 const inputJob = document.querySelector('#inputJob');
-const profileAvatar = document.querySelector('.profile__avatar');
 
 const formSelectors = {
   label: '.popup__label',
