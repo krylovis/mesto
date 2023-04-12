@@ -8,11 +8,13 @@ import PopupWithDeleteConfirmation from '../components/PopupWithDeleteConfirmati
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
+const profileEditAvatarButton = document.querySelector('.profile__edit-avatar-button');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 
 const inputName = document.querySelector('#inputName');
 const inputJob = document.querySelector('#inputJob');
+const profileAvatar = document.querySelector('.profile__avatar');
 
 const formSelectors = {
   label: '.popup__label',
@@ -73,6 +75,25 @@ const enableValidation = () => {
 };
 
 enableValidation(formSelectors);
+
+// Popup редактирования аватара
+const popupEditAvatar = new PopupWithForm({
+  selector: '.popup_type_new-avatar',
+  handleFormSubmit: (formData) => {
+    const { link } = formData
+    api.editAvatar({ avatar: link });
+    userInfo.setUserAvatar({ avatar: link });
+    popupEditAvatar.close();
+  }
+});
+popupEditAvatar.setEventListeners();
+
+function openEditAvatar() {
+  formValidators['newAvatarForm'].resetValidation();
+  popupEditAvatar.open();
+};
+
+profileEditAvatarButton.addEventListener('click', openEditAvatar);
 
 // Popup профиля
 const popupUserInfo = new PopupWithForm({
