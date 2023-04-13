@@ -51,12 +51,12 @@ const popupEditAvatar = new PopupWithForm({
     popupEditAvatar.renderLoading(true);
     const { link } = formData;
     api.editAvatar({ avatar: link })
-    .then(res => {
-      userInfo.setUserInfo(res);
-      popupEditAvatar.close();
-    })
-    .catch(err => console.log(err))
-    .finally(() => popupEditAvatar.renderLoading(false));
+      .then(res => {
+        userInfo.setUserInfo(res);
+        popupEditAvatar.close();
+      })
+      .catch(err => console.log(err))
+      .finally(() => popupEditAvatar.renderLoading(false));
   }
 });
 popupEditAvatar.setEventListeners();
@@ -73,12 +73,12 @@ const popupUserInfo = new PopupWithForm({
   selector: '.popup_type_profile-form',
   handleFormSubmit: (formData) => {
     const { userName, job } = formData;
-    api.editUserInfo({ name: userName, about: job})
-    .then(res => {
-      userInfo.setUserInfo(res);
-      popupUserInfo.close();
-    })
-    .catch(err => console.log(err));
+    api.editUserInfo({ name: userName, about: job })
+      .then(res => {
+        userInfo.setUserInfo(res);
+        popupUserInfo.close();
+      })
+      .catch(err => console.log(err));
   }
 });
 popupUserInfo.setEventListeners();
@@ -87,7 +87,7 @@ function openProfilePopup() {
   formValidators['profileForm'].resetValidation();
   const data = userInfo.getUserInfo();
   const { name, job } = data;
-  popupUserInfo.setInputValues( { userName: name, job } );
+  popupUserInfo.setInputValues({ userName: name, job });
   popupUserInfo.open();
 };
 
@@ -104,20 +104,20 @@ const createCard = (data, template) => {
   const card = new Card(data, template, handleCardClick, handleButtonLikeClick, handleButtonDelete, userInfo.getUserID());
 
   function handleButtonLikeClick() {
-    if(!card.isMyLike) {
+    if (!card.isMyLike) {
       api.addLike(card.getCardID())
-      .then(data => {
-        card.addlikeActive();
-        card.updateCounter(data);
-      })
-      .catch(err => console.log(err));
+        .then(data => {
+          card.addlikeActive();
+          card.updateCounter(data);
+        })
+        .catch(err => console.log(err));
     } else {
       api.removeLike(card.getCardID())
-      .then(data => {
-        card.removelikeActive();
-        card.updateCounter(data);
-      })
-      .catch(err => console.log(err));
+        .then(data => {
+          card.removelikeActive();
+          card.updateCounter(data);
+        })
+        .catch(err => console.log(err));
     }
   };
 
@@ -125,11 +125,11 @@ const createCard = (data, template) => {
     popupDeleteConfirmation.open();
     popupDeleteConfirmation.updateSubmit(() => {
       api.deleteCard(card.getCardID())
-      .then(() => {
-        card.remove();
-        popupDeleteConfirmation.close();
-      })
-      .catch(err => console.log(err));
+        .then(() => {
+          card.remove();
+          popupDeleteConfirmation.close();
+        })
+        .catch(err => console.log(err));
     });
   };
 
@@ -138,10 +138,12 @@ const createCard = (data, template) => {
 };
 
 // Создать секцию с карточками
-const cardList = new Section({ renderer: (item) => {
-  const card = createCard(item, '#element-template');
-  cardList.setItemAppend(card);
-} }, '.elements');
+const cardList = new Section({
+  renderer: (item) => {
+    const card = createCard(item, '#element-template');
+    cardList.setItemAppend(card);
+  }
+}, '.elements');
 
 // Popup новое место
 const popupAddCard = new PopupWithForm({
@@ -149,12 +151,12 @@ const popupAddCard = new PopupWithForm({
   handleFormSubmit: (formData) => {
     popupAddCard.renderLoading(true);
     api.addCard(formData)
-    .then(res => {
-      cardList.setItemPrepend(createCard(res, '#element-template'));
-      popupAddCard.close();
-    })
-    .catch(err => console.log(err))
-    .finally(() => popupAddCard.renderLoading(false));
+      .then(res => {
+        cardList.setItemPrepend(createCard(res, '#element-template'));
+        popupAddCard.close();
+      })
+      .catch(err => console.log(err))
+      .finally(() => popupAddCard.renderLoading(false));
   }
 });
 popupAddCard.setEventListeners();

@@ -1,7 +1,7 @@
 import Popup from './Popup.js';
 
 export default class PopupWithDeleteConfirmation extends Popup {
-  constructor({selector}) {
+  constructor({ selector }) {
     super(selector);
     this._popupForm = this._popup.querySelector('.popup__form');
   }

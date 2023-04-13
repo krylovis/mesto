@@ -36,9 +36,9 @@ export default class Card {
     this._elementImage.src = this._image;
     this._elementCounter.textContent = this._likes.length;
 
-    if(this.isMyLike) this.addlikeActive();
+    if (this.isMyLike) this.addlikeActive();
 
-    if(!this._isOwner) {
+    if (!this._isOwner) {
       this._elementTrash.remove();
       this._elementTrash = null;
     };
@@ -55,7 +55,7 @@ export default class Card {
       this._handleCardClick(this._name, this._image);
     });
 
-    if(this._isOwner) {
+    if (this._isOwner) {
       this._elementTrash.addEventListener('click', () => {
         this._handleButtonDelete();
       });
