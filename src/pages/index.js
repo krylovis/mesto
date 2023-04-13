@@ -51,10 +51,12 @@ const popupEditAvatar = new PopupWithForm({
     popupEditAvatar.renderLoading(true);
     const { link } = formData;
     api.editAvatar({ avatar: link })
-    .then(res => userInfo.setUserInfo(res))
+    .then(res => {
+      userInfo.setUserInfo(res);
+      popupEditAvatar.close();
+    })
     .catch(err => console.log(err))
     .finally(() => popupEditAvatar.renderLoading(false));
-    popupEditAvatar.close();
   }
 });
 popupEditAvatar.setEventListeners();
@@ -72,9 +74,11 @@ const popupUserInfo = new PopupWithForm({
   handleFormSubmit: (formData) => {
     const { userName, job } = formData;
     api.editUserInfo({ name: userName, about: job})
-    .then(res => userInfo.setUserInfo(res))
+    .then(res => {
+      userInfo.setUserInfo(res);
+      popupUserInfo.close();
+    })
     .catch(err => console.log(err));
-    popupUserInfo.close();
   }
 });
 popupUserInfo.setEventListeners();
@@ -142,10 +146,12 @@ const popupAddCard = new PopupWithForm({
   handleFormSubmit: (formData) => {
     popupAddCard.renderLoading(true);
     api.addCard(formData)
-    .then(res => cardList.setItemPrepend(createCard(res, '#element-template')))
+    .then(res => {
+      cardList.setItemPrepend(createCard(res, '#element-template'));
+      popupAddCard.close();
+    })
     .catch(err => console.log(err))
     .finally(() => popupAddCard.renderLoading(false));
-    popupAddCard.close();
   }
 });
 popupAddCard.setEventListeners();
