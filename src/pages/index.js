@@ -2,47 +2,22 @@ import './index.css';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
-import PopupWithImage from '../components/PopupWithImage.js';
+
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithDeleteConfirmation from '../components/PopupWithDeleteConfirmation.js';
-import UserInfo from '../components/UserInfo.js';
-import Api from '../components/Api.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
-const profileEditAvatarButton = document.querySelector('.profile__edit-avatar-button');
-const profileEditButton = document.querySelector('.profile__edit-button');
-const profileAddButton = document.querySelector('.profile__add-button');
+import {
+  profileEditAvatarButton,
+  profileEditButton,
+  profileAddButton,
+  formSelectors,
+  formValidators,
+  api,
+  userInfo,
+} from '../utils/constants.js';
 
-const formSelectors = {
-  label: '.popup__label',
-  input: '.popup__input',
-  inputTypeError: '.popup__input_type_error',
-  inputError: '.popup__input-error',
-  inputErrorActive: 'popup__input-error_active',
-  submitBtn: '.popup__submit-button',
-  submitBtnInactive: 'popup__submit-button_inactive',
-};
-
-// UserInfo
-const userInfo = new UserInfo({
-  name: '.profile__name',
-  job: '.profile__subtitle',
-  avatar: '.profile__avatar',
-});
-
-// Api
-const token = '14893dca-a279-433c-a27c-967896487d71';
-const cohort = 'cohort-63';
-const baseUrl = `https://mesto.nomoreparties.co/v1/${cohort}`;
-const headers = {
-  authorization: token,
-  'Content-Type': 'application/json'
-};
-
-const api = new Api({
-  baseUrl: baseUrl,
-  headers: headers
-});
-
+// Данные с сервера
 api.getData().then((res) => {
   const [user, cards] = res;
   userInfo.setUserInfo(user);
@@ -52,14 +27,11 @@ api.getData().then((res) => {
 // Popup с фотографией
 const popupWithImage = new PopupWithImage('.popup_type_place-photo');
 popupWithImage.setEventListeners();
-
 function handleCardClick(name, image) {
   popupWithImage.open(name, image);
 };
 
 // Валидация форм
-const formValidators = {};
-
 const enableValidation = () => {
   const formList = Array.from(document.querySelectorAll('.popup__form'));
   formList.forEach((formElement) => {
