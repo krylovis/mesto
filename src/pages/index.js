@@ -12,9 +12,6 @@ const profileEditAvatarButton = document.querySelector('.profile__edit-avatar-bu
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 
-const inputName = document.querySelector('#inputName');
-const inputJob = document.querySelector('#inputJob');
-
 const formSelectors = {
   label: '.popup__label',
   input: '.popup__input',
@@ -101,7 +98,7 @@ profileEditAvatarButton.addEventListener('click', openEditAvatar);
 const popupUserInfo = new PopupWithForm({
   selector: '.popup_type_profile-form',
   handleFormSubmit: (formData) => {
-    const { userName, job} = formData;
+    const { userName, job } = formData;
     api.editUserInfo({ name: userName, about: job})
     .then(res => userInfo.editUserInfo({ name: res.name, about: res.about}))
     .catch(err => console.log(err));
@@ -113,8 +110,8 @@ popupUserInfo.setEventListeners();
 function openProfilePopup() {
   formValidators['profileForm'].resetValidation();
   const data = userInfo.getUserInfo();
-  inputName.value = data.name;
-  inputJob.value = data.job;
+  const { name, job } = data;
+  popupUserInfo.setInputValues( { userName: name, job } );
   popupUserInfo.open();
 };
 
