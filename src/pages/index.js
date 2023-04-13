@@ -147,7 +147,7 @@ popupDeleteConfirmation.setEventListeners();
 
 function handleButtonDelete() {
   popupDeleteConfirmation.open();
-  popupDeleteConfirmation.udateSubmit(() => {
+  popupDeleteConfirmation.updateSubmit(() => {
     api.deleteCard(this.getCardID())
     .then(this._element.remove())
     .then(popupDeleteConfirmation.close())

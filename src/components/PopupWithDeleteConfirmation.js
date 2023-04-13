@@ -6,7 +6,7 @@ export default class PopupWithDeleteConfirmation extends Popup {
     this._popupForm = this._popup.querySelector('.popup__form');
   }
 
-  udateSubmit(action) {
+  updateSubmit(action) {
     this._handleSubmit = action;
   }
 
