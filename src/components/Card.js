@@ -27,7 +27,6 @@ export default class Card {
     this._elementImage = this._element.querySelector('.element__image');
     this._elementCounter = this._element.querySelector('.element__counter');
     this._elementLike = this._element.querySelector('.element__like');
-    this._elementCounter = this._element.querySelector('.element__counter');
     this._elementTrash = this._element.querySelector('.element__trash');
 
     this._setEventListeners();
