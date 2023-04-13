@@ -79,7 +79,7 @@ const popupEditAvatar = new PopupWithForm({
     popupEditAvatar.renderLoading(true);
     const { link } = formData;
     api.editAvatar({ avatar: link })
-    .then(res => userInfo.setUserAvatar({ avatar: res.avatar }))
+    .then(res => userInfo.setUserInfo(res))
     .catch(err => console.log(err))
     .finally(() => popupEditAvatar.renderLoading(false));
     popupEditAvatar.close();
@@ -100,7 +100,7 @@ const popupUserInfo = new PopupWithForm({
   handleFormSubmit: (formData) => {
     const { userName, job } = formData;
     api.editUserInfo({ name: userName, about: job})
-    .then(res => userInfo.editUserInfo({ name: res.name, about: res.about}))
+    .then(res => userInfo.setUserInfo(res))
     .catch(err => console.log(err));
     popupUserInfo.close();
   }

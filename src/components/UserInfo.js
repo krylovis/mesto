@@ -20,15 +20,6 @@ export default class UserInfo {
     this._id = _id;
   }
 
-  editUserInfo({ name, about }) {
-    this._name.textContent = name;
-    this._job.textContent = about;
-  }
-
-  setUserAvatar({ avatar }) {
-    this._avatar.src = avatar;
-  }
-
   getUserID() {
     return this._id;
   }
