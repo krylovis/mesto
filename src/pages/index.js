@@ -126,7 +126,7 @@ const createCard = (data, template) => {
     popupDeleteConfirmation.updateSubmit(() => {
       api.deleteCard(card.getCardID())
         .then(() => {
-          card.remove();
+          card.removeCard();
           popupDeleteConfirmation.close();
         })
         .catch(err => console.log(err));

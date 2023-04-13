@@ -79,4 +79,8 @@ export default class Card {
   getCardID() {
     return this._cardID;
   }
+
+  removeCard() {
+    return this._element.remove();
+  }
 }
