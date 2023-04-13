@@ -125,8 +125,10 @@ const createCard = (data, template) => {
     popupDeleteConfirmation.open();
     popupDeleteConfirmation.updateSubmit(() => {
       api.deleteCard(card.getCardID())
-      .then(card._element.remove())
-      .then(popupDeleteConfirmation.close())
+      .then(() => {
+        card.remove();
+        popupDeleteConfirmation.close();
+      })
       .catch(err => console.log(err));
     });
   };
